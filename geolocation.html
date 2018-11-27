@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation Example</title>
+	<script type="text/javascript">
+		if(navigator.geolocation==undefined){
+			alert("Geolocation undefined");
+		}else{
+			alert("Geolocation Available");
+			navigator.geolocation.getCurrentPosition(userLocated, locationError);
+			function userLocated(position){
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				alert("Lat:"+latitude+",Long:"+longitude);
+			}
+			function locationError(error){
+				switch(error.code){
+					case error.PERMISSION_DENIED:
+					alert("Permission Denied-" + error.message);
+					break;
+					
+					case error.POSITION_UNAVAILABLE:
+					alert("Position Not Available-" + error.message);
+					break;
+
+					case error.TIMEOUT:
+					alert("Request Time Out-" + error.message);
+					break;
+				}
+			}//end the function
+		}//end else block
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

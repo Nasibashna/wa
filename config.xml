@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id = "com.dr.helloworld"
+		versionCode = "1"
+		version = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+	<name>mari bezer</name>
+	
+	<description>
+		An example for phonegap build docs.
+	</description>
+
+	<author href="http://build.phonegap.com" email="ashnanasib@gmail.com">
+		Nasib Ashna
+	</author>
+
+	<plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
+	
+</widget>

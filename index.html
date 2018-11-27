@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width initial-scale=1.0">
+
+<link rel="stylesheet" href="jquery.mobile-1.4.5.css">
+
+<script src="demos/js/jquery.js"></script>
+
+<script src="jquery.js"></script>
+
+<script src="jquery.mobile-1.4.5.js"></script>
+
+<link rel="stylesheet" type="text/css" href="leaflet.css">
+
+	<script src="leaflet.js"></script>
+
+	<script type="text/javascript">
+		if(navigator.geolocation==undefined){
+			alert("Geolocation undefined");
+		}else{
+			alert("Geolocation Available");
+			navigator.geolocation.getCurrentPosition(userLocated, locationError);
+			function userLocated(position){
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+
+
+				alert("Lat:"+latitude+",Long:"+longitude);
+
+
+						var mymap = L.map('mapid').setView([latitude, longitude], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', { maxZoom: 18, attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+id: 'mapbox.streets'
+		}).addTo(mymap);
+
+
+L.marker([latitude, longitude]).addTo(mymap)
+    .bindPopup("You're here.")
+     .openPopup();
+
+			}
+			function locationError(error){
+				switch(error.code){
+					case error.PERMISSION_DENIED:
+					alert("Permission Denied-" + error.message);
+					break;
+					
+					case error.POSITION_UNAVAILABLE:
+					alert("Position Not Available-" + error.message);
+					break;
+
+					case error.TIMEOUT:
+					alert("Request Time Out-" + error.message);
+					break;
+				}
+			}//end the function
+		}//end else block
+
+	</script>
+
+	<script type="text/javascript">
+	function getanswer(){
+		var total=0;
+		var answer1= document.getElementsByName("answer1");
+		var answer2= document.getElementsByName("answer2");
+		var answer3= document.getElementsByName("answer3");
+		var answer4= document.getElementsByName("answer4");
+		var answer5= document.getElementsByName("answer5");
+		var answer6= document.getElementsByName("answer6");
+
+		if(answer1[0].checked){
+            total=total+1;			
+		}
+		if(answer2[1].checked){
+            total=total+1;			
+		}
+		if(answer3[0].checked){
+            total=total+1;			
+		}
+		if(answer4[0].checked){
+            total=total+1;			
+		}
+		if(answer5[1].checked){
+            total=total+1;			
+		}
+		if(answer6[1].checked){
+            total=total+1;			
+		}
+		var message="";
+		if (total<3) {
+        message=" <br>Poor knowledge about Breast Cancer!!"
+		}
+		else if (total<5) {
+        message=" <br>Average knowledge about Breast Cancer!!"
+		}
+		else if(total>4){
+			message="<br>High knowledge about Breast Cancer!!"
+		}
+		var finalemes="Total Score is "+total+" "+message;
+		//show total score;
+		document.getElementById("quiz").innerHTML = finalemes;
+		
+     
+	
+	}
+</script>
+
+
+
+</head>
+
+<body>
+	<div data-role="page" id="home" data-theme="b">
+		<div data-role="header">
+			<h1>Breast Cancer </h1>
+			<div data-role="navbar">
+				<ul>
+				   <li><a href="#home" data-icon="home">Questions</a></li>
+				   <li><a href="#about" data-icon="info">About Cancer</a></li>
+				   <li><a href="#stages" data-icon="grid">Stages</a></li>
+				   <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+				   <li><a href="#geo" data-icon="location">Geolocations</a></li>
+				   <li><a href="#help" data-icon="info">Help</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<div data-role="main" class="ui-content">
+
+			<a id="btnsav" onclick="window.location.href='saving.html'"  data-role="button">Enter patients name</a>
+			<form class="ui-filterable">
+    <input id="filterBasic-input" data-type="search">
+
+	</form>
+	<ul data-role="listview" data-filter="true" data-input="#filterBasic-input">
+    <div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>Questions:</h3>
+        <p>.......</p>
+    	</div>
+		</div>
+   
+   <div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+    	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>What is my risk of getting breast cancer?</h3>
+        <p>If your current age is 20, the probability of developing invasive breast cancer in the next 10 years is .06%, or 1 in 1,732. This means that 1 in 1,732 women in this age group can expect to develop breast cancer. Put another way, your odds of developing breast cancer if you are in this age range are 1 in 1,732.<br>
+		If your current age is 30, the probability of developing invasive breast cancer in the next 10 years is .44%, or 1 in 228.<br>
+		If your current age is 40, the probability of developing invasive breast cancer in the next 10 years is 1.45%, or 1 in 69.<br>
+		If your current age is 50, the probability of developing invasive breast cancer in the next 10 years is 2.31%, or 1 in 43.<br>
+		If your current age is 60, the probability of developing invasive breast cancer in the next 10 years is 3.49%, or 1 in 29.<br>
+		If your current age is 70, the probability of developing invasive breast cancer in the next 10 years is 3.84%, or 1 in 26.</p>
+    	</div>
+		</div>
+
+
+   		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>How do i know if i have breast cancer?</h3>
+        <p>Swelling or lumps around your collarbone or armpits can be caused by breast cancer that has spread to lymph nodes in those areas. The swelling may occur even before you can feel a lump in your breast, so if you have this symptom, be sure to see a doctor.</p>
+    	</div>
+		</div>
+
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>How is breast cancer diagnosed?</h3>
+        <p>Screening tests for breast cancer include breast self-exams, clinical breast exams and mammograms. Annual mammograms are recommended for all women over the age of 40. To further evaluate a breast lump, ultrasonography is sometimes used in combination with mammography to determine its physical nature.</p>
+    	</div>
+		</div>
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>How will i know the stage of my breast cancer?</h3>
+        <p>Doctors use a rating scale to describe the seriousness, or stages, of breast cancer. There are five stages: 0, I, II, III and IV. In general, the lower the stage, the better the chances for a cure and long-term survival. The stages are based on the size of the tumor, how the cancer affects the underarm lymph nodes and whether the cancer has metastasized, or spread, to distant parts of the body. Treatment during each stage depends on a patient's individual situation.</p>
+    	</div>
+		</div>
+
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>How is breast cancer treated?</h3>
+        <p>Treatment for breast cancer is different for each patient because it depends on a variety of factors. Standard treatments for breast cancer can be local or systemic. Local treatments, such as surgery or radiation therapy, remove or destroy cancer in the breast and surrounding areas. Systemic treatments, such as chemotherapy, hormonal therapy, or biologic therapy destroy or control cancer throughout the body. Breast cancer patients often have a combination of treatments, sometimes one after the other, sometimes at the same time.</p>
+    	</div>
+		</div>
+
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h3>What are my chances of surviving breast cancer?</h3>
+        <p>Five-year survival rates are a common measure for cancer patients. It's important to remember that these numbers are averages and don't apply to individuals. The five-year survival rate for patients whose breast cancer has metastasized to distant organs is around 23 percent. Breast cancer survival rates are increasing as treatments improve, so these numbers are subject to change.</p>
+    	</div>
+		</div>
+
+	</ul>
+
+		</div>
+		<div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+		</div>
+
+		</div>
+
+
+	
+
+		<div data-role="page" id="about" data-theme="b">
+		<div data-role="header">
+			<h1>Breast Cancer</h1>
+			<div data-role="navbar">
+				<ul>
+				   <li><a href="#home" data-icon="home">Questions</a></li>
+				   <li><a href="#about" data-icon="info">About Cancer</a></li>
+				   <li><a href="#stages" data-icon="grid">Stages</a></li>
+				   <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+				   <li><a href="#geo" data-icon="location">Geolocations</a></li>
+				   <li><a href="#help" data-icon="info">Help</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+		<br>
+		<div data-role="main" class="ui-content">
+			<h1>Types of Breast Cancer</h1>
+		</div>
+		<br>
+		<div data-role="">
+				<h3>Ductal Carcinoma (DCIS)</h3>
+				<p>Ductal carcinoma in situ (DCIS) is the presence of abnormal cells inside a milk duct in the breast. DCIS is considered the earliest form of breast cancer. DCIS is noninvasive, meaning it hasn't spread out of the milk duct and has a low risk of becoming invasive.</p>
+			<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Causes:</h1>
+			1. Increasing age<br>
+			2. Genetic<br>
+			3. Have never been pregnant<br>
+			4. Dense breast tissue<<br>
+			5. Body weight<br>
+			6. Alcohol consumption<br>
+		</div>
+	</div>
+
+
+<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+			<h4>Symptoms:</h4>
+			1. Breast thickening<br>
+			2. Redness breast<br>
+			3. Nipple pain<br>
+		</div>
+	</div>
+
+			<br>
+			<br>
+
+
+				<h3>Invasive Ductal Carcinoma (IDC)</h3>
+				<p>Invasive ductal carcinoma, also known as infiltrating ductal carcinoma, is cancer that began growing in a milk duct and has invaded the fibrous or fatty tissue of the breast outside of the duct. IDC is the most common form of breast cancer, representing 80 percent of all breast cancer diagnoses.</p>
+				<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Causes:</h1>
+			1. Hormones<br>
+			2. Smoking<br>
+			3. Poor nutrition<br>
+		</div>
+	</div>
+
+<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Symptoms:</h1>
+			1. Nipple discharge<br>
+			2. Breast swelling<br>
+			3. Lump in the breast<br>
+
+		</div>
+	</div>
+
+			<br>
+			<br>
+
+
+				<h3>Invasive Lobular Carcinoma</h3>
+				<p>Invasive lobular carcinoma is a type of breast cancer that begins in the milk-producing glands (lobules) of the breast. Invasive cancer means the cancer cells have broken out of the lobule where they began and have the potential to spread to the lymph nodes and other areas of the body.</p>
+				<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Causes:</h1>
+			1. Old age<br>
+			2. Post menopausal hormone<br>
+			3. Inherited genetic<br>
+		</div>
+	</div>
+
+			<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Symptoms:</h1>
+			1. Breast thickening<br>
+			2. Breast swelling<br>
+			3. Skin irritation<br>
+
+		</div>
+		</div>
+    <div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+	</div>
+</div>
+
+
+		
+
+
+		<div data-role="page" id="stages" data-theme="b">
+		<div data-role="header">
+			<h1>Breast Cancer</h1>
+			<div data-role="navbar">
+				<ul>
+				   <li><a href="#home" data-icon="home">Questions</a></li>
+				   <li><a href="#about" data-icon="info">About Cancer</a></li>
+				   <li><a href="#stages" data-icon="grid">Stages</a></li>
+				   <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+				   <li><a href="#geo" data-icon="location">Geolocations</a></li>
+				   <li><a href="#help" data-icon="info">Help</a></li>
+				</ul>
+			</div>
+			</div>
+
+			<div data-role="main" class="ui-content">
+		<br>
+		<div data-role="footer">
+			<h1>Stages of Breast Cancer</h1>
+		</div>
+		<br>
+		<div data-role="">
+				<h2>Stage 1</h2>
+				<p>Starting at this level, breast cancer is called invasive, meaning it has broken free to attack healthy tissue.</p>
+				
+				<p>Stage 1A: The cancer has spread into the fatty breast tissue. The tumor itself is no larger than a shelled peanut, or there may be no tumor.</p>
+				
+				<p>Stage 1B: Some cancer cells, but just tiny amounts, have been found in a few lymph nodes.</p>
+			
+			<br>
+
+
+			<h2>Stage 2</h2>
+				<p>The cancer has grown, spread, or both.</p>
+				
+				<p>Stage 2A: The tumor in the breast is still small, if there's one at all. There may be no cancer in the lymph nodes.</p>
+				
+				<p>Stage 2B: Breast tumor is bigger, it may be the size of a walnut or as big as a lime. It may or may not be in any lymph nodes.</p>
+			
+			<br>
+			
+			<h2>Stage 3</h2>
+				<p>The cancer has not spread to bones or organs, but it’s considered advanced, and it’s harder to fight.</p>
+				
+				<p>Stage 3A: The cancer has been found in up to nine of the lymph nodes that form a chain from your underarm to your collarbone. </p>
+				
+				<p>Stage 3B: The tumor has grown into the chest wall or skin around your breast.</p>
+
+				<p>Stage 3C: The cancer has been found in 10 or more lymph nodes, or has spread above or below your collarbone.</p>
+			
+			<br>
+
+		</div>
+    <div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+	</div>
+
+</div>
+<
+
+
+
+		<div data-role="page" id="treatments" data-theme="b">
+		<div data-role="header">
+			<h1>Breast Cancer</h1>
+			<div data-role="navbar">
+				<ul>
+				   <li><a href="#home" data-icon="home">Questions</a></li>
+				   <li><a href="#about" data-icon="info">About Cancer</a></li>
+				   <li><a href="#stages" data-icon="grid">Stages</a></li>
+				   <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+				   <li><a href="#geo" data-icon="location">Geolocations</a></li>
+				   <li><a href="#help" data-icon="info">Help</a></li>
+				</ul>
+			</div>
+		</div>	
+
+		<div data-role="main" class="ui-content">
+			<h3>Treatments</h3>
+
+			<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Treatment for Ductal Carcinoma (DCIS)</h1>
+        <p>1. Radiation therapy<br>
+           2. Mastectomy<br>
+           3. Hormonal therapy after surgery</p>
+    	</div>
+		</div>
+
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Treatment for Invasive Ductal Carcinoma (IDC)</h1>
+        <p>1. Radiation therapy<br>
+           2. Surgery</p>
+    	</div>
+		</div>
+
+
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+   	 	<div data-role="collapsible" id="set1" data-collapsed="true">
+        <h1>Treatment for Invasive Lobular Carcinoma</h1>
+        <p>1. Radiation therapy<br>
+           2. Surgery<br>
+           3. Chemotherapy</p>
+    	</div>
+		</div>
+<br>
+
+
+		<form>
+
+				<h3>Take the Quiz!!</h3>
+
+        		<legend><b>1. You can get breast cancer even if it doesn't run in your family.</b></legend>
+		        
+		        <input type="radio" name="answer1" id="ans1true" value="True" >
+		        <label for="ans1true">True</label> 
+
+		        <input type="radio" name="answer1" id="ans1false" value="False">
+		        <label for="ans1false">False</label> 
+
+		        <legend><b>2.If breast cancer runs in your family, you're sure to get it.</b></legend>
+		        
+		        <input type="radio" name="answer2" id="ans2true" value="True">
+		        <label for="ans2true">True</label> 
+
+		        <input type="radio" name="answer2" id="ans2false" value="False">
+		        <label for="ans2false">False</label> 
+
+		        <legend><b>3.You still need mammograms after menopause.</b></legend>
+		        
+		        <input type="radio" name="answer3" id="ans3true" value="True">
+		        <label for="ans3true">True</label> 
+
+		        <input type="radio" name="answer3" id="ans3false" value="False">
+		        <label for="ans3false">False</label>
+
+		        <legend><b>4.Men can get breast cancer.</b></legend>
+		        
+		        <input type="radio" name="answer4" id="ans4true" value="True">
+		        <label for="ans4true">True</label> 
+
+		        <input type="radio" name="answer4" id="ans4false" value="False">
+		        <label for="ans4false">False</label> 
+
+		        <legend><b>5.Surgery and needle biopsies can cause breast cancer to spread.</b></legend>
+		        
+		        <input type="radio" name="answer5" id="ans5true" value="True">
+		        <label for="ans5true">True</label> 
+
+		        <input type="radio" name="answer5" id="ans5false" value="False">
+		        <label for="ans5false">False</label> 
+
+
+		        <legend><b>6.There's nothing you can do to lower your breast cancer risk.</b></legend>
+		        
+		        <input type="radio" name="answer6" id="ans6true" value="True">
+		        <label for="ans6true">True</label> 
+
+		        <input type="radio" name="answer6" id="ans6false" value="False">
+		        <label for="ans6false">False</label>
+		        <p id="quiz" align="center" style="color: blue;"></p> 
+		        <input type="button" name="btnsubmit" onclick="getanswer();" value="Submit" id="quiz">  <br>
+		        
+
+
+        	</form>
+
+          <div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+
+</div>
+</div>
+
+
+
+		<div data-role="page" id="geo" data-theme="b">
+		<div data-role="header">
+			<h1>Breast Cancer</h1>
+			<div data-role="navbar">
+				<ul>
+				   <li><a href="#home" data-icon="home">Questions</a></li>
+				   <li><a href="#about" data-icon="info">About Cancer</a></li>
+				   <li><a href="#stages" data-icon="grid">Stages</a></li>
+				   <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+				   <li><a href="#geo" data-icon="location">Geolocations</a></li>
+				   <li><a href="#help" data-icon="info">Help</a></li>
+				</ul>
+			</div>
+<br>
+<br>
+
+
+				<div data-role="main" class="ui-content">
+				<div id="mapid" style="width: 1200px; height: 400px;"></div>
+		</div>
+		</div>
+	<div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+     
+
+		</div>
+		</div>
+
+
+    <div data-role="page" id="help" data-theme="b">
+    <div data-role="header">
+      <h1>Breast Cancer</h1>
+      <div data-role="navbar">
+        <ul>
+           <li><a href="#home" data-icon="home">Questions</a></li>
+           <li><a href="#about" data-icon="info">About Cancer</a></li>
+           <li><a href="#stages" data-icon="grid">Stages</a></li>
+           <li><a href="#treatments" data-icon="heart">Treatments</a></li> 
+           <li><a href="#geo" data-icon="location">Geolocations</a></li>
+           <li><a href="#help" data-icon="info">Help</a></li>
+        </ul>
+      </div>
+    </div>  
+
+    <div data-role="main" class="ui-content">
+      <h1>How May I Help You</h1>
+    
+      <p>This Mobile Web Application contains efficient informations about Breast Cancer. From basic information about cancer and its causes to in-depth information on specific cancer types, including risk factors, stages, and treatment options; you'll find it here.
+      Whether you or someone you love has cancer, knowing what to expect can help you cope.</p>
+      <br>
+
+      <h4>Questions and Answers</h4>
+      <p>This application has frequently asked questions about Breast Cancer and it's corresponding answers.
+      It will help patients or non-patients to know certain facts of Breast Cancer.</p>
+      <br>
+
+      <h4>Types, Causes and Symptoms</h4>
+      <p>It also provides information on three different common types of Breast Cancer, defining each of them and showing the causes and symptoms of the specified cancer. In this way if the user wants to know if she is having some of the symptoms listed, she can then take necessay action i.e, visits the doctor or do the breast cancer test.</p>
+      <br>
+
+      <h4>Stages</h4>
+      <p>If you've been diagnosed with breast cancer, you’ll want to know what stage it is. This application will help you and your doctors know more about what’s ahead and decide on your treatments.</p>
+      <br> 
+
+      <h4>Treatments</h4>
+      <p>This application provides treatments for the specified type of breast cancer. It is always advisable to start the treatment as soon as possible because cancer spreads fast and in such a situation, treatment becomes more complex. Late detection and treatment also reduces the survival chances of the patient. Determining the stage of breast cancer also assumes a very important role as well.</p>
+      <br>
+
+      <h4>Quiz</h4>
+      <p>The Quiz feature will allow the user to test herself on her knowledge about Breast Cancer.</p>
+      <br> 
+
+      <h4>Geolocation</h4>
+      <p>The Geolocation feature enables us to identify the physical and real-world geographic location of various individuals and devices. It can be used to identify the exact latitudinal and longitudinal location of an internet-connected device through its GPS Location</p>
+      <br> 
+      </div>
+
+
+
+     <div data-role="footer">
+    <h6>Copyright &copy; 2018 Breast Cancer</h6> 
+     
+</div>
+
+
+
+
+		</body>
+		</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patient Record</title>
+	<meta name="viewport" charset="utf-8" content="width=device-width , initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		body {background-color: pink;}
+		h2 {color: blue; text-align: center;} 
+		h4 {color: red;}
+		form {text-align: center;}
+	</style>
+	
+</head>
+<body>
+
+			<h2 id="title"> Patient Record </h2>
+
+			<div data-role='page' id="records">
+	
+			<div data-role="main" class="ui-content">
+
+			<form>
+		
+			<h4><legend>Insert your Full Name</legend></h4>
+
+			<input type="text" id="name" placeholder="Ex: Adesh koonjul"><br>
+
+			<br>
+			<button type="button" id="btninsert" >Record Value</button><br><br>
+
+			<button type="button" id="btnclear" >Clear all Values</button><br><br>
+
+			<button type="button" id="btnreturn" onclick="window.location.href='index.html'">Back to application</button><br><br>
+
+			
+			<legend></legend>
+			<h2>Patient Name</h2>
+			<div id="output"></div>
+
+
+
+		
+			</form>
+			</div>
+			</div>
+
+
+
+	<script type="text/javascript">
+	
+	
+	var z = new Date();
+	const name = document.getElementById("name");
+	const btninsert = document.getElementById("btninsert");
+	const output = document.getElementById("output");
+
+	btninsert.onclick = function(){
+
+
+		const key = z;
+		const value = name.value;
+
+
+		if(key && value){
+
+			localStorage.setItem(key,value);
+			location.reload();
+		}
+
+	};
+
+	for(let i = 0; i< localStorage.length; i++){
+
+		const key = localStorage.key(i);
+		const value = localStorage.getItem(key);
+		
+		
+
+
+
+		
+		output.innerHTML += "Date : "+`${key} `+ "<br/><br/>"+"name : "+`${value}`+"<br/><hr><br/>";
+
+	}
+
+
+		btnclear.onclick = function(){
+			localStorage.clear();
+			location.reload();
+
+	 
+	};
+
+	
+</script>
+</body>
+</html>
